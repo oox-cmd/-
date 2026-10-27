@@ -11,12 +11,13 @@
 <body>
   <a class="skip" href="#main">跳到主要内容</a>
   <header class="header">
-    <a class="brand" href="#explore" aria-label="智护中轴首页"><img src="assets/mark.svg" alt="" width="40" height="40"><span>智护中轴<small>DIGITAL CENTRAL AXIS</small></span></a>
-    <nav aria-label="主要导航"><button data-view="explore" class="active" aria-current="page">全景导览</button><button data-view="protect">数字保护</button><button data-view="practice">实践档案</button><button data-view="create">青年共创</button></nav>
+    <a class="brand" href="#intro" aria-label="智护中轴序章"><img src="assets/mark.svg" alt="" width="40" height="40"><span>智护中轴<small>DIGITAL CENTRAL AXIS</small></span></a>
+    <nav aria-label="展厅章节"><button data-view="intro">序章</button><button data-view="explore">读懂中轴</button><button data-view="protect">科技守护</button><button data-view="story">科技讲活</button><button data-view="practice">青年尝试</button><button data-view="epilogue">尾声</button></nav>
     <div class="header-actions"><span class="local-status"><i></i>本地展示原型</span><button id="fullscreen" class="icon-button" aria-label="切换全屏" title="全屏 F">⛶</button></div>
   </header>
   <main id="main" tabindex="-1"></main>
-  <footer><span>轴脉新声实践团队 <span class="footer-divider">/</span> 科技创新行</span><span>《习近平新时代中国特色社会主义思想概论》课程社会实践</span><button id="sources">资料来源与说明 ↗</button></footer>
+  <div id="chapter-rail" class="chapter-rail" aria-label="章节进度"></div>
+  <footer><span>轴脉新声实践团队 <span class="footer-divider">/</span> 科技创新行</span><button id="replay-intro">重播开场 ↺</button><button id="sources">资料来源与说明 ↗</button></footer>
   <dialog id="dialog" aria-labelledby="dialog-title"><button id="close-dialog" class="close" aria-label="关闭弹窗">×</button><div id="dialog-body"></div></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
 </body>
