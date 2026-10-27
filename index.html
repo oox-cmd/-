@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="智护中轴·数启文脉，北京中轴线数字文化遗产交互展示。轴脉新声实践团队课程原型。">
+  <title>智护中轴 · 数启文脉</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <header class="header">
+    <a class="brand" href="#explore" aria-label="智护中轴首页"><img src="assets/mark.svg" alt="" width="40" height="40"><span>智护中轴<small>DIGITAL CENTRAL AXIS</small></span></a>
+    <nav aria-label="主要导航"><button data-view="explore" class="active" aria-current="page">全景导览</button><button data-view="protect">数字保护</button><button data-view="practice">实践档案</button><button data-view="create">青年共创</button></nav>
+    <div class="header-actions"><span class="local-status"><i></i>本地展示原型</span><button id="fullscreen" class="icon-button" aria-label="切换全屏" title="全屏 F">⛶</button></div>
+  </header>
+  <main id="main" tabindex="-1"></main>
+  <footer><span>轴脉新声实践团队 <span class="footer-divider">/</span> 科技创新行</span><span>《习近平新时代中国特色社会主义思想概论》课程社会实践</span><button id="sources">资料来源与说明 ↗</button></footer>
+  <dialog id="dialog" aria-labelledby="dialog-title"><button id="close-dialog" class="close" aria-label="关闭弹窗">×</button><div id="dialog-body"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

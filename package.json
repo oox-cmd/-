@@ -1,0 +1,10 @@
+{
+  "name": "digital-central-axis",
+  "version": "1.0.0",
+  "private": true,
+  "description": "智护中轴·数启文脉：离线课程展示原型",
+  "scripts": {
+    "start": "node tools/preview.mjs",
+    "check": "node --check app.js && node --check data.js && node --check tools/preview.mjs"
+  }
+}
