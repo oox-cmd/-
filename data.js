@@ -56,8 +56,8 @@ window.AXIS = {
   window.AXIS.practice = {
     points: [
       {id:'qianmen',name:'前门周边', route:0, x:296, y:470, dx:10, dy:4, what:'第一次实践的公众观察点位，关注前门周边中轴线空间。',look:'观察游客怎样获得文化信息、怎样使用导览，记录具体的使用障碍。'},
-      {id:'dashilan',name:'大栅栏（拓展）', route:0, x:213, y:470, dx:-10, dy:4, anchor:'end', extra:true, what:'较早实施方案中的扩展观察点位，与最终开题PPT主路线分开显示。',look:'观察商业街区中的文化表达与公众阅读行为，是否前往视实际安排而定。'},
-      {id:'museum',name:'古代建筑博物馆', route:1, x:125, y:512, dx:0, dy:24, anchor:'middle', what:'位于先农坛内，是第二次实践计划中的需求发现站点。',look:'比较实物、建筑模型与图文展陈，访谈哪些内容难理解、希望用什么方式获取知识。'}
+      {id:'dashilan',name:'大栅栏（拓展）', route:0, x:213, y:470, dx:-10, dy:4, anchor:'end', extra:true, what:'从街巷尺度观察商业、文化表达与公众日常的关系。',look:'观察商业街区中的文化表达与公众阅读行为，寻找容易被忽略的文化线索。'},
+      {id:'museum',name:'古代建筑博物馆', route:1, x:125, y:512, dx:0, dy:24, anchor:'middle', what:'位于先农坛内，是传统建筑知识的观察站点。',look:'比较实物、建筑模型与图文展陈，访谈哪些内容难理解、希望用什么方式获取知识。'}
     ],
     routes: [
       {main:'M260 445Q282 448 296 470', extra:'M296 470H213', nodeIds:['zhengyang'], view:[255, 458, 2.6]},

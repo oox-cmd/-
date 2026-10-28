@@ -73,7 +73,7 @@ main { min-height:calc(100svh - 235px); }
 .chapter-note { color:var(--muted);font-size:13px;line-height:1.9;letter-spacing:.3px; }
 .youth-process { display:grid;grid-template-columns:repeat(3,1fr);gap:36px;border-top:1px solid var(--line);margin:34px 0; }
 .youth-process article { position:relative;padding:30px 0 0; }
-.process-number { position:absolute;top:20px;right:8px;font:60px Georgia;color:#d3b8860d; }
+.process-number { position:absolute;top:20px;right:8px;font:60px Georgia;color:#d3b886b3; }
 .youth-process h2 { font:23px/1.6 var(--serif);letter-spacing:1px;margin:16px 0 10px; }
 .youth-process p { font-size:15px;line-height:1.9;color:var(--muted);max-width:370px; }
 .youth-lower { display:grid;grid-template-columns:1.1fr 1fr;gap:70px;margin-top:36px; }
