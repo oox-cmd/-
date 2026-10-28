@@ -14,6 +14,7 @@
     {id:'epilogue',number:'尾声',title:'让所学回应需要'}
   ];
   let introFrame = null;
+  let modelViewer = null;
   const tourStops = ['bell','hill','palace','zhengyang','xiannong','yongding'];
   const periods = {
     all:['全景','遗产整体','从钟鼓楼到永定门，建筑、道路与公共空间共同构成中轴线。'],
@@ -165,11 +166,24 @@
   }
   function heading(eyebrow,title,copy,notice='') {return `<div class="page-heading"><div><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${copy}</p></div>${notice?`<div class="notice">${notice}</div>`:''}</div>`;}
   function renderProtect() {
-    $('#main').innerHTML=`<section class="page fade-in">${heading('DIGITAL CONSERVATION','科技，让保护更可理解','从建筑结构到数据观察，用交互演示理解数字文化遗产保护的基本思路。','本页为教学演示。模型为原创结构示意，监测曲线为预设模拟数据，未连接文物监测设备。')}<div class="protection-layout"><article class="panel"><div class="section-label">建筑结构解读<span>SCHEMATIC MODEL</span></div><h2>一座城门的层次</h2><p class="small">拖动滑块分开屋顶、楼身与台基，观察构造关系。</p><div class="model ${state.scan?'scan-mode':''}" id="model"><svg viewBox="-70 -130 140 190">${building('gate',state.explosion)}</svg><div class="model-tag">屋顶 / 楼身 / 台基 · 非精确文物模型</div></div><div class="range-row"><label for="explode">结构展开</label><input id="explode" type="range" min="0" max="100" value="${state.explosion}" step="1"><output for="explode" id="explode-value">${state.explosion}%</output></div><div class="switches"><button id="material" class="${state.scan?'':'active'}" aria-pressed="${!state.scan}">形态示意</button><button id="scan" class="${state.scan?'active':''}" aria-pressed="${state.scan}">线框观察</button></div><p class="small">数字模型可以帮助记录和解释建筑。实际保护仍需专业测绘、长期观测与专家判断。</p></article><article class="panel"><div class="section-label">数字监测的思路<span>SIMULATED DATA</span></div><h2>从数据，发现变化</h2><div id="sensor-content"></div><button class="secondary" id="scenario">${state.warning?'恢复常态情景':'切换异常情景'} ↗</button><p class="small" style="margin-top:15px">情景阈值仅用于说明提示机制，不能作为文物保护标准或风险结论。</p></article></div><div class="steps">${[['01','采集','通过专业设备与人工调查记录文物及环境信息。'],['02','建档','把结构、影像与历史资料整理为可追溯档案。'],['03','观察','比较同一对象在不同时间的变化，发现需关注的问题。'],['04','研判','由专业人员核查异常，结合现场情况决定措施。']].map(([n,t,p])=>`<article class="step"><b>${n}</b><h3>${t}</h3><p>${p}</p></article>`).join('')}</div></section>`;
+    $('#main').innerHTML=`<section class="page protect-page fade-in">${heading('CHAPTER 02 / DIGITAL CONSERVATION','换个角度，读懂一座城楼','拖动观察正阳门城楼，展开屋檐与柱廊的层次，再了解数字记录和连续观察如何辅助保护。','依据公开照片与建筑说明制作的风格化三维示意。内部构件并非测绘复原，监测曲线为模拟数据。')}<div class="protection-layout three-protection"><article class="panel model-panel"><div class="section-label">正阳门城楼<span>立体观察 / 结构示意</span></div><div class="model three-stage" id="model"><div class="model-fallback" id="model-fallback"><svg viewBox="-70 -130 140 190">${building('gate',state.explosion)}</svg></div><div class="model-corner"><span>正阳门城楼</span><small>灰瓦 · 绿琉璃剪边 · 朱红柱廊</small></div><span class="model-drag-hint">拖动旋转 / 滚轮或双指缩放</span></div><div class="model-toolbar"><div class="model-views" role="group" aria-label="建筑预设视角"><button data-model-view="perspective">斜向</button><button data-model-view="front">正面</button><button data-model-view="side">侧面</button><button data-model-view="top">俯看</button><button id="zoom-in" aria-label="放大模型">＋</button><button id="zoom-out" aria-label="缩小模型">－</button></div><div><button id="orbit-model" aria-pressed="false">自动环绕</button><button id="reset-model">复位 ↺</button></div></div><div class="range-row"><label for="explode">结构展开</label><input id="explode" type="range" min="0" max="100" value="${state.explosion}" step="1"><output for="explode" id="explode-value">${state.explosion}%</output></div><div class="model-bottom"><div class="switches"><button id="material" class="${state.scan?'':'active'}" aria-pressed="${!state.scan}">建筑材质</button><button id="scan" class="${state.scan?'active':''}" aria-pressed="${state.scan}">线框观察</button></div><span id="model-status" role="status">三维模型加载中</span></div><p class="model-disclosure">部件分层用于讲解外观与空间关系，不代表真实拆卸工序。牌匾与彩绘细节作简化表达。</p></article><article class="panel"><div class="section-label">数字监测的思路<span>模拟情景</span></div><h2>从数据，发现变化</h2><div id="sensor-content"></div><button class="secondary" id="scenario">${state.warning?'恢复常态情景':'切换异常情景'} ↗</button><p class="small" style="margin-top:15px">情景阈值仅用于说明提示机制，不能作为文物保护标准或风险结论。</p></article></div><div class="steps">${[['01','采集','通过专业设备与人工调查记录文物及环境信息。'],['02','建档','把结构、影像与历史资料整理为可追溯档案。'],['03','观察','比较同一对象在不同时间的变化，发现需关注的问题。'],['04','研判','由专业人员核查异常，结合现场情况决定措施。']].map(([n,t,p])=>`<article class="step"><b>${n}</b><h3>${t}</h3><p>${p}</p></article>`).join('')}</div></section>`;
     renderSensors();
-    $('#explode').oninput=e=>{state.explosion=Number(e.target.value);$('#explode-value').textContent=`${state.explosion}%`;$('#model svg').innerHTML=building('gate',state.explosion);};
-    const setScan=enabled=>{state.scan=enabled;$('#model').classList.toggle('scan-mode',enabled);$('#scan').classList.toggle('active',enabled);$('#material').classList.toggle('active',!enabled);$('#scan').setAttribute('aria-pressed',enabled);$('#material').setAttribute('aria-pressed',!enabled);};
+    $('#explode').oninput=e=>{state.explosion=Number(e.target.value);$('#explode-value').textContent=`${state.explosion}%`;$('#model-fallback svg').innerHTML=building('gate',state.explosion);modelViewer?.setExplode(state.explosion/100);};
+    const setScan=enabled=>{state.scan=enabled;$('#model').classList.toggle('scan-mode',enabled);$('#scan').classList.toggle('active',enabled);$('#material').classList.toggle('active',!enabled);$('#scan').setAttribute('aria-pressed',enabled);$('#material').setAttribute('aria-pressed',!enabled);modelViewer?.setWireframe(enabled);};
     $('#scan').onclick=()=>setScan(true);$('#material').onclick=()=>setScan(false);
+    let orbiting=false;
+    if(window.Axis3D)modelViewer=window.Axis3D.mount($('#model'),{
+      onReady:()=>{$('#model-status').textContent='三维模型可操作';},
+      onFailure:message=>{$('#model-status').textContent=message;$('#model-status').classList.add('model-warning');},
+      onAutoRotate:enabled=>{orbiting=enabled;$('#orbit-model').setAttribute('aria-pressed',enabled);$('#orbit-model').textContent=enabled?'暂停环绕':'自动环绕';}
+    });
+    else $('#model-status').textContent='三维资源未加载，当前显示平面示意。';
+    modelViewer?.setExplode(state.explosion/100);modelViewer?.setWireframe(state.scan);
+    $$('[data-model-view]').forEach(b=>b.onclick=()=>modelViewer?.view(b.dataset.modelView));
+    $('#zoom-in').onclick=()=>modelViewer?.zoom(1);$('#zoom-out').onclick=()=>modelViewer?.zoom(-1);
+    $('#orbit-model').onclick=()=>modelViewer?.setAutoRotate(!orbiting);
+    $('#reset-model').onclick=()=>{state.explosion=0;$('#explode').value=0;$('#explode-value').textContent='0%';$('#model-fallback svg').innerHTML=building('gate',0);setScan(false);modelViewer?.reset();};
+    if(!modelViewer)$$('[data-model-view],#zoom-in,#zoom-out,#orbit-model,#reset-model').forEach(b=>b.disabled=true);
     $('#scenario').onclick=()=>{state.warning=!state.warning;renderSensors();$('#scenario').textContent=state.warning?'恢复常态情景 ↗':'切换异常情景 ↗';};
   }
   function renderSensors() {
@@ -241,6 +255,7 @@
     if(view==='create') view='practice';
     if(!chapters.some(c=>c.id===view) && view!=='admin') view='intro';
     if(view==='admin' && state.view!=='admin') state.returnView=state.view;
+    modelViewer?.dispose();modelViewer=null;
     stopIntro();if(view!==state.view) stopTour();state.view=view;
     document.body.classList.toggle('admin-mode',view==='admin');
     document.body.classList.toggle('opening-view',view==='intro');

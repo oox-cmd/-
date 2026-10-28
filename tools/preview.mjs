@@ -4,8 +4,8 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const port=Number(process.env.PORT || 4173);
-const allowed=new Set(['/index.html','/styles.css','/app.js','/data.js','/assets/mark.svg']);
-const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml'};
+const allowed=new Set(['/index.html','/styles.css','/app.js','/data.js','/assets/mark.svg','/assets/axis3d.js','/assets/models/zhengyangmen.glb','/assets/models/zhengyangmen.meta.json','/assets/vendor/THREE-LICENSE.txt']);
+const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.glb':'model/gltf-binary','.json':'application/json; charset=utf-8','.txt':'text/plain; charset=utf-8'};
 const server=http.createServer(async(req,res)=>{
   try{
     const requested=new URL(req.url,'http://127.0.0.1').pathname;

@@ -5,6 +5,13 @@
   "description": "智护中轴·数启文脉：离线课程展示原型",
   "scripts": {
     "start": "node tools/preview.mjs",
-    "check": "node --check app.js && node --check data.js && node --check tools/preview.mjs"
+    "check": "node --check app.js && node --check data.js && node --check viewer3d.mjs && node --check models/zhengyangmen.mjs && node --check tools/build3d.mjs && node --check tools/preview.mjs",
+    "build:3d": "node tools/build3d.mjs"
+  },
+  "dependencies": {
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
   }
 }

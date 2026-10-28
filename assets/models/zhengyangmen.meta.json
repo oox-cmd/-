@@ -1,0 +1,23 @@
+{
+  "title": "正阳门城楼",
+  "kind": "风格化建筑示意，非测绘复原",
+  "assemblies": 6,
+  "meshes": 29,
+  "triangles": 93198,
+  "animations": [
+    "结构展开与合拢 / 4秒"
+  ],
+  "bounds": {
+    "width": 63,
+    "height": 42.091098779439925,
+    "depth": 33
+  },
+  "bytes": 6779436,
+  "source": "models/zhengyangmen.mjs",
+  "references": "docs/3D素材与建模依据.md",
+  "notes": [
+    "图片仅用于外观参考，模型不嵌入第三方照片",
+    "牌匾文字在网页运行时使用本机字体绘制",
+    "各部件可分别展开，但不表达精确内部结构"
+  ]
+}
